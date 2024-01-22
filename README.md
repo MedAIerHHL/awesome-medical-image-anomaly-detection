@@ -1,8 +1,8 @@
-# awesome-medical-image-anoraml-detection
+# Awesome Medical Images Anoramly Detection
 
-Recent papers about anoraml detection in medical images.
+Recent papers about anoramly detection in medical images. [[Github](https://github.com/MedAIerHHL/awesome-medical-image-anoraml-detection)] [[zhihu](https://zhuanlan.zhihu.com/p/679231066)]
 
-For a complete list of anomaly detection in general computer vision, please visit [Awesome Industrial Anomaly Detection](https://github.com/M-3LAB/awesome-industrial-anomaly-detection).
+For a complete list of anomaly detection in general computer vision, please visit [Awesome Industrial Anomaly Detection](https://github.com/M-3LAB/awesome-industrial-anomaly-detection). [[zhihu](https://zhuanlan.zhihu.com/p/674050907)]
 
 To complement or correct it, please contact me at **1729766533 [at] qq [dot]  com** or  **send a pull request** .
 
