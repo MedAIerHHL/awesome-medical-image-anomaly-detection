@@ -4,6 +4,8 @@ Recent papers about anoraml detection in medical images.
 
 For a complete list of anomaly detection in general computer vision, please visit [Awesome Industrial Anomaly Detection](https://github.com/M-3LAB/awesome-industrial-anomaly-detection).
 
+To complement or correct it, please contact me at **1729766533 [at] qq [dot]  com** or  **send a pull request** .
+
 Last updated: 2024/01/22
 
 - (2024/01/19) MAEDiff: Masked Autoencoder-enhanced Diffusion Models for Unsupervised Anomaly Detection in Brain Images. [[arxiv](https://arxiv.org/abs/2401.10561)]
