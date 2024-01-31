@@ -15,6 +15,7 @@ Time recording principle: In the event of conflicting timestamps, priority shall
 - (2024/01/19) Towards Universal Unsupervised Anomaly Detection in Medical Imaging. [[MIDL](http://arxiv.org/abs/2401.10637)][[code](https://github.com/ci-ber/RA)]
 - (2023/12/07) Anomaly Detection for Medical Images Using Teacher-Student Model with Skip Connections and Multi-scale Anomaly Consistency. [[paper](https://d197for5662m48.cloudfront.net/documents/publicationstatus/180114/preprint_pdf/2ad0e14997d216f1a26bc8c8a6d710ac.pdf)][[code](https://github.com/Arktis2022/Skip-TS)]
 - (2023/12/01) Anomaly detection via gating highway connection for retinal fundus images. [[PR](https://doi.org/10.1016/j.patcog.2023.110167)][[code](https://github.com/WentianZhang-ML/GatingAno)]
+- (2023/11/20) Leveraging healthy population variability in deep learning unsupervised anomaly detection in brain FDG PET. [[arxiv](http://arxiv.org/abs/2311.12081)]
 - (2023/11/03) A Two-Stage Generative Model with CycleGAN and Joint Diffusion for MRI-based Brain Tumor Detection. [[arxiv](http://arxiv.org/abs/2311.03074)][[code](https://github.com/zhyjSIAT/A-Two-Stage-CycleGAN-VE-BRATS2020)]
 - (2023/09/16) Latent Transformer Models for out-of-distribution detection. [[MIA](https://doi.org/10.1016/j.media.2023.102967)][[code](https://github.com/marksgraham/ transformer-ood)]
 - (2023/08/30) Modality Cycles with Masked Conditional Diffusion for Unsupervised Anomaly Segmentation in MRI. [[MICCAI](https://arxiv.org/pdf/2308.16150.pdf)][[code](https://github.com/ZiyunLiang/MMCCD)]
