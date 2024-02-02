@@ -6,7 +6,7 @@ For a complete list of anomaly detection in general computer vision, please visi
 
 To complement or correct it, please contact me at **1729766533 [at] qq [dot]  com** or  **send a pull request** .
 
-Last updated: 2024/01/23
+Last updated: 2024/02/02
 
 Time recording principle: In the event of conflicting timestamps, priority shall be given to **the submission time on arXiv**. However, if the manuscript undergoes further review and is subsequently published in a journal, the timestamp of **the "Available online" status** in the journal shall take precedence.
 
@@ -18,6 +18,7 @@ Time recording principle: In the event of conflicting timestamps, priority shall
 - (2023/11/20) Leveraging healthy population variability in deep learning unsupervised anomaly detection in brain FDG PET. [[arxiv](http://arxiv.org/abs/2311.12081)]
 - (2023/11/03) A Two-Stage Generative Model with CycleGAN and Joint Diffusion for MRI-based Brain Tumor Detection. [[arxiv](http://arxiv.org/abs/2311.03074)][[code](https://github.com/zhyjSIAT/A-Two-Stage-CycleGAN-VE-BRATS2020)]
 - (2023/09/16) Latent Transformer Models for out-of-distribution detection. [[MIA](https://doi.org/10.1016/j.media.2023.102967)][[code](https://github.com/marksgraham/ transformer-ood)]
+- (2023/08/31) Hierarchical-Instance Contrastive Learning for Minority Detection on Imbalanced Medical Datasets. [[TMI](https://doi.org/10.1109/TMI.2023.3310716)]
 - (2023/08/30) Modality Cycles with Masked Conditional Diffusion for Unsupervised Anomaly Segmentation in MRI. [[MICCAI](https://arxiv.org/pdf/2308.16150.pdf)][[code](https://github.com/ZiyunLiang/MMCCD)]
 - (2023/08/14) Self-supervised pseudo multi-class pre-training for unsupervised anomaly detection and segmentation in medical images. [[MIA](https://doi.org/10.1016/j.media.2023.102930)]
 - (2023/03/15) Reversing the Abnormal: Pseudo-Healthy Generative Networks for Anomaly Detection. [[MICCAI](https://link.springer.com/chapter/10.1007/978-3-031-43904-9_29)][[code](https://github.com/ci-ber/PHANES)]
