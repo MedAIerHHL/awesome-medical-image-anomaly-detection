@@ -12,7 +12,7 @@ Time recording principle: In the event of conflicting timestamps, priority shall
 
 - (2024/01/29) Evaluation of pseudo-healthy image reconstruction for anomaly detection with deep generative models: Application to brain FDG PET. [[arxiv](https://arxiv.org/abs/2401.16363)]
 - (2024/01/19) MAEDiff: Masked Autoencoder-enhanced Diffusion Models for Unsupervised Anomaly Detection in Brain Images. [[arxiv](https://arxiv.org/abs/2401.10561)]
-- (2024/01/19) Towards Universal Unsupervised Anomaly Detection in Medical Imaging. [[MIDL](http://arxiv.org/abs/2401.10637)][[code](https://github.com/ci-ber/RA)]
+- (2024/01/19) Towards Universal Unsupervised Anomaly Detection in Medical Imaging. [[MIDL](http://arxiv.org/abs/2401.10637)][[code](https://github.com/ci-ber/RA)][[中文](https://arxivtools.blob.core.windows.net/xueshuxiangzipaperhtml/2024_1_22/2401.10637.pdf)]
 - (2023/12/07) Anomaly Detection for Medical Images Using Teacher-Student Model with Skip Connections and Multi-scale Anomaly Consistency. [[paper](https://d197for5662m48.cloudfront.net/documents/publicationstatus/180114/preprint_pdf/2ad0e14997d216f1a26bc8c8a6d710ac.pdf)][[code](https://github.com/Arktis2022/Skip-TS)]
 - (2023/12/01) Anomaly detection via gating highway connection for retinal fundus images. [[PR](https://doi.org/10.1016/j.patcog.2023.110167)][[code](https://github.com/WentianZhang-ML/GatingAno)]
 - (2023/11/20) Leveraging healthy population variability in deep learning unsupervised anomaly detection in brain FDG PET. [[arxiv](http://arxiv.org/abs/2311.12081)]
