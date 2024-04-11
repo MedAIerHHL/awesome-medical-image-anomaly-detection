@@ -1,14 +1,17 @@
 # Awesome Medical Image Anomaly Detection
 
-Recent papers about anomaly detection in medical images. [[Github](https://github.com/MedAIerHHL/awesome-medical-image-anoraml-detection)] [[zhihu](https://zhuanlan.zhihu.com/p/679231066)]
+Recent papers about anomaly detection in medical images. [[Github](https://github.com/MedAIerHHL/awesome-medical-image-anoraml-detection)]
 
 For a complete list of anomaly detection in general computer vision, please visit [Awesome Industrial Anomaly Detection](https://github.com/M-3LAB/awesome-industrial-anomaly-detection). [[zhihu](https://zhuanlan.zhihu.com/p/674050907)]
 
 To complement or correct it, please contact me at **1729766533 [at] qq [dot]  com** or  **send a pull request** .
 
-Last updated: 2024/02/02
+Last updated: 2024/04/11
 
 Time recording principle: In the event of conflicting timestamps, priority shall be given to **the submission time on arXiv**. However, if the manuscript undergoes further review and is subsequently published in a journal, the timestamp of **the "Available online" status** in the journal shall take precedence.
+
+* (2024/04/16) MedIAnomaly: A comparative study of anomaly detection in medical images. [[Paper](https://arxiv.org/abs/2404.04518)][[Code](https://github.com/caiyu6666/MedIAnomaly)]
+* (2024/03/19) Adapting Visual-Language Models for Generalizable Anomaly Detection in Medical Images. [[CVPR](https://arxiv.org/abs/2403.12570)][[Code](https://github.com/MediaBrain-SJTU/MVFA-AD)]
 
 - (2024/01/29) Evaluation of pseudo-healthy image reconstruction for anomaly detection with deep generative models: Application to brain FDG PET. [[arxiv](https://arxiv.org/abs/2401.16363)]
 - (2024/01/19) MAEDiff: Masked Autoencoder-enhanced Diffusion Models for Unsupervised Anomaly Detection in Brain Images. [[arxiv](https://arxiv.org/abs/2401.10561)]
