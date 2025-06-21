@@ -10,6 +10,7 @@ Last updated: 2024/04/19
 
 Time recording principle: In the event of conflicting timestamps, priority shall be given to **the submission time on arXiv**. However, if the manuscript undergoes further review and is subsequently published in a journal, the timestamp of **the "Available online" status** in the journal shall take precedence.
 
+* (2024/10/07) MetaAD: Metabolism-Aware Anomaly Detection for Parkinson's Disease in 3D [18F]FDG PET. [[Paper](https://link.springer.com/chapter/10.1007/978-3-031-72069-7_28)][[Code](https://github.com/MedAIerHHL/MetaAD)]
 * (2024/04/16) MedIAnomaly: A comparative study of anomaly detection in medical images. [[Paper](https://arxiv.org/abs/2404.04518)][[Code](https://github.com/caiyu6666/MedIAnomaly)]
 * (2024/03/19) Adapting Visual-Language Models for Generalizable Anomaly Detection in Medical Images. [[CVPR](https://arxiv.org/abs/2403.12570)][[Code](https://github.com/MediaBrain-SJTU/MVFA-AD)]
 * (2024/01/29) Evaluation of pseudo-healthy image reconstruction for anomaly detection with deep generative models: Application to brain FDG PET. [[arxiv](https://arxiv.org/abs/2401.16363)]
