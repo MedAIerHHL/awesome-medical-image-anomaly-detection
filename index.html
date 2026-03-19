@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awesome Medical Anomaly Detection</title>
+  <style>
+    /* ── Reset & base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                   Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: #f6f8fa;
+      color: #24292e;
+      line-height: 1.6;
+    }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ────────────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header p  { margin-top: .6rem; font-size: 1.05rem; opacity: .9; }
+    header .badges { margin-top: 1.1rem; display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 20px;
+      padding: .25rem .85rem;
+      font-size: .82rem;
+      color: #fff;
+      transition: background .2s;
+    }
+    header .badge:hover { background: rgba(255,255,255,.3); text-decoration: none; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+    /* ── Notice box ────────────────────────────────────────────── */
+    .notice {
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      font-size: .93rem;
+    }
+    .notice strong { color: #e65100; }
+
+    /* ── Search ────────────────────────────────────────────────── */
+    .search-wrap {
+      display: flex;
+      gap: .5rem;
+      margin: 1.5rem 0 1rem;
+    }
+    #search {
+      flex: 1;
+      padding: .55rem 1rem;
+      border: 1px solid #d1d5da;
+      border-radius: 6px;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    #search:focus {
+      border-color: #0366d6;
+      box-shadow: 0 0 0 3px rgba(3,102,214,.15);
+    }
+    #count {
+      align-self: center;
+      white-space: nowrap;
+      font-size: .85rem;
+      color: #586069;
+    }
+
+    /* ── TOC ───────────────────────────────────────────────────── */
+    .toc {
+      background: #fff;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: .9rem;
+    }
+    .toc h3 { font-size: .9rem; color: #586069; margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .06em; }
+    .toc ul { list-style: none; display: flex; gap: .6rem; flex-wrap: wrap; }
+    .toc li a {
+      display: inline-block;
+      padding: .2rem .7rem;
+      border: 1px solid #d1d5da;
+      border-radius: 14px;
+      color: #24292e;
+      font-weight: 500;
+      transition: background .15s;
+    }
+    .toc li a:hover { background: #f3f4f6; text-decoration: none; }
+
+    /* ── Year section ──────────────────────────────────────────── */
+    .year-section { margin-bottom: 2rem; }
+    .year-section h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      border-bottom: 2px solid #e1e4e8;
+      padding-bottom: .4rem;
+      margin-bottom: 1rem;
+      color: #0d47a1;
+    }
+
+    /* ── Paper card ────────────────────────────────────────────── */
+    .paper {
+      background: #fff;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      padding: .85rem 1rem;
+      margin-bottom: .65rem;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .paper:hover {
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      border-color: #b0bec5;
+    }
+    .paper.hidden { display: none; }
+
+    .paper-date {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #6a737d;
+      letter-spacing: .03em;
+      margin-bottom: .25rem;
+    }
+    .paper-title {
+      font-size: .98rem;
+      font-weight: 600;
+      color: #24292e;
+      margin-bottom: .4rem;
+    }
+    .paper-links { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .paper-link {
+      display: inline-block;
+      padding: .18rem .65rem;
+      border-radius: 4px;
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      border: 1px solid;
+    }
+    .paper-link.paper  { background: #e8f4fd; color: #0277bd; border-color: #90caf9; }
+    .paper-link.code   { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+    .paper-link.venue  { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
+    .paper-link.arxiv  { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
+    .paper-link.zh     { background: #fce4ec; color: #880e4f; border-color: #f48fb1; }
+
+    /* ── No-results ────────────────────────────────────────────── */
+    #no-results { display: none; text-align: center; padding: 3rem 0; color: #586069; font-size: .95rem; }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      font-size: .82rem;
+      color: #6a737d;
+      margin-top: 3rem;
+      padding-bottom: 2rem;
+    }
+    footer a { color: #0366d6; }
+
+    /* ── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏥 Awesome Medical Anomaly Detection</h1>
+  <p>A curated list of papers on anomaly detection in medical data<br>
+     (images, video, sequences &amp; multimodal)</p>
+  <div class="badges">
+    <a class="badge" href="https://github.com/MedAIerHHL/awesome-medical-image-anomaly-detection">⭐ GitHub</a>
+    <a class="badge" href="https://github.com/M-3LAB/awesome-industrial-anomaly-detection">🔗 Industrial AD</a>
+    <a class="badge" href="https://zhuanlan.zhihu.com/p/674050907">📖 Zhihu</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="notice">
+    📢 <strong>Notice:</strong> The scope of this list has been expanded beyond medical <em>images</em> to include all medical data modalities — video, time-series, and multimodal. Contributions are welcome!<br>
+    联系方式: <strong>1729766533 [at] qq [dot] com</strong> 或提交 Pull Request。
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <input id="search" type="text" placeholder="Search papers by title, venue, or year…" aria-label="Search papers" />
+    <span id="count"></span>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="Year navigation">
+    <h3>Jump to year</h3>
+    <ul id="toc-list"></ul>
+  </nav>
+
+  <!-- Paper list (injected by JS) -->
+  <div id="paper-list"></div>
+  <div id="no-results">No papers match your search. Try a different keyword.</div>
+
+</div>
+
+<footer>
+  Last updated: 2024/10/07 &nbsp;|&nbsp;
+  <a href="https://github.com/MedAIerHHL/awesome-medical-image-anomaly-detection">View on GitHub</a> &nbsp;|&nbsp;
+  Time-recording principle: conflicting timestamps → arXiv submission date takes priority; journal "Available online" date takes precedence once published.
+</footer>
+
+<script>
+// ── Paper data ──────────────────────────────────────────────────────────────
+const papers = [
+  {
+    year: 2024,
+    date: "2024/10/07",
+    title: "MetaAD: Metabolism-Aware Anomaly Detection for Parkinson's Disease in 3D [18F]FDG PET",
+    links: [
+      { label: "Paper", url: "https://link.springer.com/chapter/10.1007/978-3-031-72069-7_28", type: "paper" },
+      { label: "Code",  url: "https://github.com/MedAIerHHL/MetaAD",                           type: "code"  }
+    ]
+  },
+  {
+    year: 2024,
+    date: "2024/04/16",
+    title: "MedIAnomaly: A comparative study of anomaly detection in medical images",
+    links: [
+      { label: "Paper", url: "https://arxiv.org/abs/2404.04518",              type: "paper" },
+      { label: "Code",  url: "https://github.com/caiyu6666/MedIAnomaly",      type: "code"  }
+    ]
+  },
+  {
+    year: 2024,
+    date: "2024/03/19",
+    title: "Adapting Visual-Language Models for Generalizable Anomaly Detection in Medical Images",
+    links: [
+      { label: "CVPR", url: "https://arxiv.org/abs/2403.12570",                    type: "venue" },
+      { label: "Code", url: "https://github.com/MediaBrain-SJTU/MVFA-AD",          type: "code"  }
+    ]
+  },
+  {
+    year: 2024,
+    date: "2024/01/29",
+    title: "Evaluation of pseudo-healthy image reconstruction for anomaly detection with deep generative models: Application to brain FDG PET",
+    links: [
+      { label: "arXiv", url: "https://arxiv.org/abs/2401.16363", type: "arxiv" }
+    ]
+  },
+  {
+    year: 2024,
+    date: "2024/01/19",
+    title: "MAEDiff: Masked Autoencoder-enhanced Diffusion Models for Unsupervised Anomaly Detection in Brain Images",
+    links: [
+      { label: "arXiv", url: "https://arxiv.org/abs/2401.10561", type: "arxiv" }
+    ]
+  },
+  {
+    year: 2024,
+    date: "2024/01/19",
+    title: "Towards Universal Unsupervised Anomaly Detection in Medical Imaging",
+    links: [
+      { label: "MIDL",  url: "http://arxiv.org/abs/2401.10637",                                                                             type: "venue" },
+      { label: "Code",  url: "https://github.com/ci-ber/RA",                                                                                type: "code"  },
+      { label: "中文",   url: "https://arxivtools.blob.core.windows.net/xueshuxiangzipaperhtml/2024_1_22/2401.10637.pdf",                    type: "zh"    }
+    ]
+  },
+  {
+    year: 2024,
+    date: "2024/01/13",
+    title: "Diffusion models for out-of-distribution detection in digital pathology",
+    links: [
+      { label: "MIA", url: "https://doi.org/10.1016/j.media.2024.103088", type: "venue" }
+    ]
+  },
+  // 2023
+  {
+    year: 2023,
+    date: "2023/12/07",
+    title: "Anomaly Detection for Medical Images Using Teacher-Student Model with Skip Connections and Multi-scale Anomaly Consistency",
+    links: [
+      { label: "Paper", url: "https://d197for5662m48.cloudfront.net/documents/publicationstatus/180114/preprint_pdf/2ad0e14997d216f1a26bc8c8a6d710ac.pdf", type: "paper" },
+      { label: "Code",  url: "https://github.com/Arktis2022/Skip-TS",                                                                                       type: "code"  }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/12/01",
+    title: "Anomaly detection via gating highway connection for retinal fundus images",
+    links: [
+      { label: "PR",   url: "https://doi.org/10.1016/j.patcog.2023.110167",   type: "venue" },
+      { label: "Code", url: "https://github.com/WentianZhang-ML/GatingAno",   type: "code"  }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/11/20",
+    title: "Leveraging healthy population variability in deep learning unsupervised anomaly detection in brain FDG PET",
+    links: [
+      { label: "arXiv", url: "http://arxiv.org/abs/2311.12081", type: "arxiv" }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/11/03",
+    title: "A Two-Stage Generative Model with CycleGAN and Joint Diffusion for MRI-based Brain Tumor Detection",
+    links: [
+      { label: "arXiv", url: "http://arxiv.org/abs/2311.03074",                                    type: "arxiv" },
+      { label: "Code",  url: "https://github.com/zhyjSIAT/A-Two-Stage-CycleGAN-VE-BRATS2020",     type: "code"  }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/09/16",
+    title: "Latent Transformer Models for out-of-distribution detection",
+    links: [
+      { label: "MIA",  url: "https://doi.org/10.1016/j.media.2023.102967",        type: "venue" },
+      { label: "Code", url: "https://github.com/marksgraham/transformer-ood",      type: "code"  }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/08/31",
+    title: "Hierarchical-Instance Contrastive Learning for Minority Detection on Imbalanced Medical Datasets",
+    links: [
+      { label: "TMI", url: "https://doi.org/10.1109/TMI.2023.3310716", type: "venue" }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/08/30",
+    title: "Modality Cycles with Masked Conditional Diffusion for Unsupervised Anomaly Segmentation in MRI",
+    links: [
+      { label: "MICCAI", url: "https://arxiv.org/pdf/2308.16150.pdf",          type: "venue" },
+      { label: "Code",   url: "https://github.com/ZiyunLiang/MMCCD",           type: "code"  }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/08/14",
+    title: "Self-supervised pseudo multi-class pre-training for unsupervised anomaly detection and segmentation in medical images",
+    links: [
+      { label: "MIA", url: "https://doi.org/10.1016/j.media.2023.102930", type: "venue" }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/03/15",
+    title: "Reversing the Abnormal: Pseudo-Healthy Generative Networks for Anomaly Detection",
+    links: [
+      { label: "MICCAI", url: "https://link.springer.com/chapter/10.1007/978-3-031-43904-9_29", type: "venue" },
+      { label: "Code",   url: "https://github.com/ci-ber/PHANES",                               type: "code"  }
+    ]
+  },
+  {
+    year: 2023,
+    date: "2023/03/01",
+    title: "Unsupervised Pathology Detection: A Deep Dive Into the State of the Art",
+    links: [
+      { label: "TMI",  url: "https://ieeexplore.ieee.org/document/10197302/", type: "venue" },
+      { label: "Code", url: "https://github.com/iolag/UPD_study/",            type: "code"  }
+    ]
+  },
+  // 2022
+  {
+    year: 2022,
+    date: "2022/09/16",
+    title: "A Multi-task Network with Weight Decay Skip Connection Training for Anomaly Detection in Retinal Fundus Images",
+    links: [
+      { label: "MICCAI", url: "https://link.springer.com/chapter/10.1007/978-3-031-16434-7_63", type: "venue" },
+      { label: "Code",   url: "https://github.com/WentianZhang-ML/WDMT-Net",                    type: "code"  }
+    ]
+  }
+];
+
+// ── Build page ──────────────────────────────────────────────────────────────
+(function () {
+  const years = [...new Set(papers.map(p => p.year))].sort((a, b) => b - a);
+  const listEl = document.getElementById("paper-list");
+  const tocEl  = document.getElementById("toc-list");
+  const countEl = document.getElementById("count");
+
+  // Build TOC
+  years.forEach(y => {
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="#year-${y}">${y}</a>`;
+    tocEl.appendChild(li);
+  });
+
+  // Build year sections
+  years.forEach(y => {
+    const section = document.createElement("section");
+    section.className = "year-section";
+    section.id = `year-${y}`;
+
+    const h2 = document.createElement("h2");
+    h2.textContent = y;
+    section.appendChild(h2);
+
+    papers.filter(p => p.year === y).forEach(p => {
+      const card = document.createElement("article");
+      card.className = "paper";
+      card.dataset.text = (p.title + " " + p.date + " " + p.links.map(l => l.label).join(" ")).toLowerCase();
+
+      const dateDiv = document.createElement("div");
+      dateDiv.className = "paper-date";
+      dateDiv.textContent = p.date;
+
+      const titleDiv = document.createElement("div");
+      titleDiv.className = "paper-title";
+      titleDiv.textContent = p.title;
+
+      const linksDiv = document.createElement("div");
+      linksDiv.className = "paper-links";
+      p.links.forEach(l => {
+        const a = document.createElement("a");
+        a.className = `paper-link ${l.type}`;
+        a.href = l.url;
+        a.textContent = l.label;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        linksDiv.appendChild(a);
+      });
+
+      card.appendChild(dateDiv);
+      card.appendChild(titleDiv);
+      card.appendChild(linksDiv);
+      section.appendChild(card);
+    });
+
+    listEl.appendChild(section);
+  });
+
+  // Count helper
+  function updateCount() {
+    const visible = document.querySelectorAll(".paper:not(.hidden)").length;
+    countEl.textContent = `${visible} paper${visible !== 1 ? "s" : ""}`;
+  }
+  updateCount();
+
+  // Search
+  document.getElementById("search").addEventListener("input", function () {
+    const q = this.value.trim().toLowerCase();
+    const noResults = document.getElementById("no-results");
+    let visibleTotal = 0;
+
+    document.querySelectorAll(".paper").forEach(card => {
+      const match = !q || card.dataset.text.includes(q);
+      card.classList.toggle("hidden", !match);
+      if (match) visibleTotal++;
+    });
+
+    // Hide empty year sections
+    document.querySelectorAll(".year-section").forEach(sec => {
+      const anyVisible = [...sec.querySelectorAll(".paper")].some(c => !c.classList.contains("hidden"));
+      sec.style.display = anyVisible ? "" : "none";
+    });
+
+    noResults.style.display = visibleTotal === 0 ? "block" : "none";
+    updateCount();
+  });
+})();
+</script>
+</body>
+</html>
