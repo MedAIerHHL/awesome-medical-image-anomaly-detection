@@ -6,7 +6,7 @@
 >
 > **[中文]** 我们正在重新构建整个仓库，同时也欢迎大家一起来交流医学图像异常检测相关内容。欢迎扫描下方二维码加入我们的微信群！
 >
-> <img src="wechat_group.jpg" alt="WeChat Group QR Code / 微信群二维码" width="200"/>
+> <img src="https://github.com/user-attachments/assets/aae1bc4c-6b81-433f-8da9-af9993ce3e91" alt="WeChat Group QR Code / 微信群二维码" width="200"/>
 
 Recent papers about anomaly detection in medical images. [[Github](https://github.com/MedAIerHHL/awesome-medical-image-anoraml-detection)]
 
