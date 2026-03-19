@@ -5,192 +5,362 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Awesome Medical Anomaly Detection</title>
   <style>
+    :root {
+      --ink: #231b16;
+      --muted: #5e5248;
+      --paper: #fffaf6;
+      --canvas: #f6efe8;
+      --border: #eadfd5;
+      --accent: #d23b2e;
+      --accent-dark: #9c2020;
+      --soft-shadow: 0 12px 32px rgba(35, 27, 22, 0.08);
+    }
+
     /* ── Reset & base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-                   Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      background: #f6f8fa;
-      color: #24292e;
-      line-height: 1.6;
+      font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: radial-gradient(circle at 18% 20%, rgba(210, 59, 46, 0.05), transparent 30%),
+                  radial-gradient(circle at 80% 10%, rgba(156, 32, 32, 0.05), transparent 28%),
+                  linear-gradient(180deg, #fdf8f5 0%, #f6efe8 100%);
+      color: var(--ink);
+      line-height: 1.65;
+      min-height: 100vh;
     }
-    a { color: #0366d6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      transition: color .15s ease, background .15s ease;
+    }
+    a:hover { text-decoration: none; color: #781616; }
 
     /* ── Layout ────────────────────────────────────────────────── */
     header {
-      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
-      color: #fff;
-      padding: 2.5rem 1.5rem 2rem;
-      text-align: center;
+      background:
+        radial-gradient(circle at 14% 30%, rgba(255,255,255,.12), transparent 42%),
+        radial-gradient(circle at 82% 16%, rgba(255,255,255,.16), transparent 32%),
+        linear-gradient(120deg, #e14d35 0%, #b32122 65%, #83171a 100%);
+      color: #fffaf6;
+      padding: 2.6rem 1.5rem 3.1rem;
+      position: relative;
+      overflow: hidden;
     }
-    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
-    header p  { margin-top: .6rem; font-size: 1.05rem; opacity: .9; }
-    header .badges { margin-top: 1.1rem; display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
-    header .badge {
-      display: inline-block;
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 20px;
-      padding: .25rem .85rem;
-      font-size: .82rem;
-      color: #fff;
-      transition: background .2s;
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.06) 0 25%, transparent 25% 50%, rgba(255,255,255,0.05) 50% 75%, transparent 75% 100%);
+      background-size: 32px 32px;
+      opacity: .45;
+      pointer-events: none;
     }
-    header .badge:hover { background: rgba(255,255,255,.3); text-decoration: none; }
+    .nav-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .28);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    .brand span {
+      display: inline-flex;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: #fffaf6;
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.08);
+    }
+    .nav-links {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+      font-weight: 600;
+      letter-spacing: .01em;
+    }
+    .nav-links a {
+      color: #ffeae3;
+      padding: .35rem .75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.08);
+    }
+    .nav-links a:hover { background: rgba(255,255,255,.16); }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .35rem .75rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.26);
+      border-radius: 999px;
+      font-size: .85rem;
+      letter-spacing: .02em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: #ffeae3;
+      box-shadow: 0 0 0 6px rgba(255,234,227,0.18);
+    }
+    header h1 {
+      margin-top: 1rem;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    header p.lede {
+      margin-top: .75rem;
+      max-width: 720px;
+      font-size: 1.05rem;
+      opacity: .95;
+    }
+    header .badges {
+      margin-top: 1.35rem;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+    header .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 999px;
+      padding: .45rem .95rem;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fffaf6;
+      letter-spacing: .01em;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+    header .badge:hover { background: rgba(255,255,255,.22); text-decoration: none; }
+
+    .container {
+      max-width: 980px;
+      margin: -2.4rem auto 0;
+      padding: 0 1.5rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
 
     /* ── Notice box ────────────────────────────────────────────── */
     .notice {
-      background: #fff8e1;
-      border-left: 4px solid #f9a825;
-      border-radius: 6px;
-      padding: 1rem 1.2rem;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
       margin: 1.5rem 0;
-      font-size: .93rem;
+      font-size: .94rem;
+      box-shadow: var(--soft-shadow);
     }
-    .notice strong { color: #e65100; }
+    .notice strong { color: var(--accent-dark); }
 
     /* ── Search ────────────────────────────────────────────────── */
     .search-wrap {
       display: flex;
-      gap: .5rem;
-      margin: 1.5rem 0 1rem;
+      gap: .65rem;
+      margin: 1.6rem 0 1.2rem;
+      align-items: center;
+      flex-wrap: wrap;
     }
     #search {
       flex: 1;
-      padding: .55rem 1rem;
-      border: 1px solid #d1d5da;
-      border-radius: 6px;
-      font-size: .95rem;
+      padding: .65rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: .97rem;
       outline: none;
+      background: var(--paper);
       transition: border-color .2s, box-shadow .2s;
+      box-shadow: var(--soft-shadow);
     }
     #search:focus {
-      border-color: #0366d6;
-      box-shadow: 0 0 0 3px rgba(3,102,214,.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(210, 59, 46, 0.18), var(--soft-shadow);
     }
     #count {
       align-self: center;
       white-space: nowrap;
-      font-size: .85rem;
-      color: #586069;
+      font-size: .9rem;
+      color: var(--muted);
+      background: #f1e7de;
+      padding: .35rem .7rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
 
     /* ── TOC ───────────────────────────────────────────────────── */
     .toc {
-      background: #fff;
-      border: 1px solid #e1e4e8;
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 1.6rem;
       font-size: .9rem;
+      box-shadow: var(--soft-shadow);
     }
-    .toc h3 { font-size: .9rem; color: #586069; margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .06em; }
-    .toc ul { list-style: none; display: flex; gap: .6rem; flex-wrap: wrap; }
+    .toc h3 {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: .5rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .toc ul { list-style: none; display: flex; gap: .55rem; flex-wrap: wrap; }
     .toc li a {
       display: inline-block;
-      padding: .2rem .7rem;
-      border: 1px solid #d1d5da;
-      border-radius: 14px;
-      color: #24292e;
-      font-weight: 500;
-      transition: background .15s;
+      padding: .32rem .85rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--ink);
+      font-weight: 600;
+      background: linear-gradient(180deg, #fffdfb 0%, #f6ede4 100%);
+      box-shadow: 0 4px 12px rgba(35,27,22,0.06);
     }
-    .toc li a:hover { background: #f3f4f6; text-decoration: none; }
+    .toc li a:hover { background: #f1e7de; }
 
     /* ── Year section ──────────────────────────────────────────── */
     .year-section { margin-bottom: 2rem; }
     .year-section h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      border-bottom: 2px solid #e1e4e8;
-      padding-bottom: .4rem;
-      margin-bottom: 1rem;
-      color: #0d47a1;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent-dark);
+      margin-bottom: .9rem;
     }
 
     /* ── Paper card ────────────────────────────────────────────── */
     .paper {
-      background: #fff;
-      border: 1px solid #e1e4e8;
-      border-radius: 8px;
-      padding: .85rem 1rem;
-      margin-bottom: .65rem;
-      transition: box-shadow .2s, border-color .2s;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--accent);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: .75rem;
+      transition: transform .12s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 8px 20px rgba(35,27,22,0.06);
     }
     .paper:hover {
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
-      border-color: #b0bec5;
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow);
+      border-color: #c92f26;
     }
     .paper.hidden { display: none; }
 
     .paper-date {
-      font-size: .78rem;
-      font-weight: 600;
-      color: #6a737d;
-      letter-spacing: .03em;
-      margin-bottom: .25rem;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: .15rem;
     }
     .paper-title {
-      font-size: .98rem;
-      font-weight: 600;
-      color: #24292e;
-      margin-bottom: .4rem;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .45rem;
+      line-height: 1.5;
     }
-    .paper-links { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .paper-links { display: flex; flex-wrap: wrap; gap: .4rem; }
     .paper-link {
       display: inline-block;
-      padding: .18rem .65rem;
-      border-radius: 4px;
+      padding: .22rem .7rem;
+      border-radius: 10px;
       font-size: .78rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .04em;
+      letter-spacing: .05em;
       border: 1px solid;
     }
-    .paper-link.paper  { background: #e8f4fd; color: #0277bd; border-color: #90caf9; }
-    .paper-link.code   { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
-    .paper-link.venue  { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
-    .paper-link.arxiv  { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
-    .paper-link.zh     { background: #fce4ec; color: #880e4f; border-color: #f48fb1; }
+    .paper-link.paper  { background: #fcefeb; color: #b52d26; border-color: #e1b5ad; }
+    .paper-link.code   { background: #eef7f0; color: #2e7d32; border-color: #c2e0c6; }
+    .paper-link.venue  { background: #f6ecf9; color: #6a1b9a; border-color: #dbc2e8; }
+    .paper-link.arxiv  { background: #fff2e5; color: #e65100; border-color: #ffd7b3; }
+    .paper-link.zh     { background: #fce7f0; color: #9b174d; border-color: #f3c4d8; }
 
     /* ── No-results ────────────────────────────────────────────── */
-    #no-results { display: none; text-align: center; padding: 3rem 0; color: #586069; font-size: .95rem; }
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
 
     /* ── Footer ────────────────────────────────────────────────── */
     footer {
       text-align: center;
-      font-size: .82rem;
-      color: #6a737d;
+      font-size: .85rem;
+      color: var(--muted);
       margin-top: 3rem;
-      padding-bottom: 2rem;
+      padding: 0 1.5rem 2.3rem;
     }
-    footer a { color: #0366d6; }
+    footer a { color: var(--accent-dark); }
 
     /* ── Responsive ────────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.4rem; }
+    @media (max-width: 720px) {
+      header h1 { font-size: 1.8rem; }
+      .nav-links { width: 100%; justify-content: flex-start; }
+      .container { margin-top: -1.4rem; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>🏥 Awesome Medical Anomaly Detection</h1>
-  <p>A curated list of papers on anomaly detection in medical data<br>
-     (images, video, sequences &amp; multimodal)</p>
-  <div class="badges">
-    <a class="badge" href="https://github.com/MedAIerHHL/awesome-medical-image-anomaly-detection">⭐ GitHub</a>
-    <a class="badge" href="https://github.com/M-3LAB/awesome-industrial-anomaly-detection">🔗 Industrial AD</a>
-    <a class="badge" href="https://zhuanlan.zhihu.com/p/674050907">📖 Zhihu</a>
+  <div class="nav-bar" aria-label="Site navigation">
+    <div class="brand"><span></span>Inspired by Papers We Love</div>
+    <div class="nav-links">
+      <a href="#paper-list">Archive</a>
+      <a href="#toc-list">Years</a>
+      <a href="#notice">Contact</a>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="eyebrow">Reading room • Medical anomaly detection</div>
+    <h1>🏥 Awesome Medical Anomaly Detection</h1>
+    <p class="lede">A curated list of papers on anomaly detection in medical data — images, video, sequences, and multimodal.</p>
+    <div class="badges">
+      <a class="badge" href="https://github.com/MedAIerHHL/awesome-medical-image-anomaly-detection">⭐ GitHub</a>
+      <a class="badge" href="https://github.com/M-3LAB/awesome-industrial-anomaly-detection">🔗 Industrial AD</a>
+      <a class="badge" href="https://zhuanlan.zhihu.com/p/674050907">📖 Zhihu</a>
+    </div>
   </div>
 </header>
 
 <div class="container">
 
-  <div class="notice">
+  <div class="notice" id="notice">
     📢 <strong>Notice:</strong> The scope of this list has been expanded beyond medical <em>images</em> to include all medical data modalities — video, time-series, and multimodal. Contributions are welcome!<br>
     联系方式: <strong>1729766533 [at] qq [dot] com</strong> 或提交 Pull Request。
   </div>
