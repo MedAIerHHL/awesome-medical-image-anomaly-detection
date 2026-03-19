@@ -1,5 +1,13 @@
 # Awesome Medical Image Anomaly Detection
 
+> **📢 Notice / 说明**
+>
+> **[EN]** We are currently rebuilding this entire repository. We also warmly welcome everyone to join us in discussing topics related to medical image anomaly detection. Feel free to scan the QR code below to join our WeChat group!
+>
+> **[中文]** 我们正在重新构建整个仓库，同时也欢迎大家一起来交流医学图像异常检测相关内容。欢迎扫描下方二维码加入我们的微信群！
+>
+> <img src="wechat_group.jpg" alt="WeChat Group QR Code / 微信群二维码" width="200"/>
+
 Recent papers about anomaly detection in medical images. [[Github](https://github.com/MedAIerHHL/awesome-medical-image-anoraml-detection)]
 
 For a complete list of anomaly detection in general computer vision, please visit [Awesome Industrial Anomaly Detection](https://github.com/M-3LAB/awesome-industrial-anomaly-detection). [[zhihu](https://zhuanlan.zhihu.com/p/674050907)]
